@@ -3,11 +3,12 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{mathtools}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
 \usepackage[noabbrev,nameinlink]{cleveref}
 
-\usepackage[style=apa]{biblatex} 
+\usepackage[style=apa,backend=biber]{biblatex} 
 \addbibresource{bibliography.bib}
-
 
 \title{RL\_Proyect}
 \author{Carlos Soto (carlos.soto362@gmail.com)}
@@ -55,18 +56,16 @@ To be able to work with the methods of reinforcement learning, this world is goi
 
 for $n_1,n_2 \in \mathbf{N}$ , defined $\eta_1 = \bar{w}_1/n_1$,  $\eta_2 = \bar{w}_2/n_2$. Then, $p_1 = 1$, $p_2 \in \{\eta_2/\eta_1,2\eta_2/\eta_1, \hdots , \bar{w}_2/\eta_1 , \eta_2/2\eta_1,\hdots,\eta_2/\bar{w}_1 \}$, $x_{i1} \in \{\bar{w}_1,\bar{w}_1 - \eta_1 ,\hdots,0 \}$ and $x_{i2} \in \{\bar{w}_2,\bar{w}_2 - \eta_2 ,\hdots,0 \}$.
 
-This discretisation transforms the Edgeworth box in a three dimensional greed world with $(n_1+1)(n_2+1)(n_1+n_2 + 1)$ points. The price $p_1$ can be set to one because what determines the competitive equilibrium is the ration between the two prices.
+This discretisation transforms the Edgeworth box in a three dimensional greed world with $(n_1+1)(n_2+1)(n_1+n_2 + 1)$ points. The price $p_1$ can be set to one because what determines the competitive equilibrium is the ratio between the two prices.
 
 In this world, there is only one point where equilibrium can be reached. 
 
 \subsubsection*{Actions}
 Without knowledge of their utility function, each consumer can only see the reward (the value of the utility function) after they have change the allocation. For doing so, they need to exchange with the other consumer. In order to work with this world in a similar manner than the greed world, each consumer can decide to buy or sell moving their allocation horizontally or vertically, but the movement is done only if both of the consumers agree on this decision. This agreement will be done in the following way:
 
-If a consumer decide to sell an amount of good 2 according to his policy in the present point, he needs also to decide if he want to sell at the same, increase or decrease price, moving the state up or down in the price direction. Next, if the other customer decides to buy according to the policy evaluated in the original point, then she needs to see if she still wants to buy according to her policy evaluated in the new point, if the result is affirmative and if the price is affordable (is less that her budget evaluated in the current point), then they exchange giving the equivalent amount of good 1 in exchange of the amount of good 2. If the other customer don't want to buy according to her policy in the new point, then nothing happens, and the point returns to the original place. 
+If a consumer decide to sell an amount of good 2 according to his policy in the present point, he needs also to decide if he want to sell at the same, increase or decrease price, moving the state up or down in the price direction. Next, the other customer also needs to decide to buy at the new price, only if both of them agree on this, then they exchange giving the equivalent amount of good 1 in exchange of the amount of good 2. 
 
 If both customers want to buy the good 2, nothing happens. If both customers want to sell the good 2, nothing happens.  
-
-Summarizing, the actions for each customer can be, buy good 2, selling good 2 at the same price, selling good 2 with increase price and selling good 2 with decreased price. 
 
 \subsubsection*{Rewards}
 The rewards would be the value of their utility function after the action has been taken. The utility functions don't need to be the same for both customers. They are assumed to be concave functions of the goods. 
@@ -74,5 +73,107 @@ The rewards would be the value of their utility function after the action has be
 \subsection*{Possible simplification }
 In case the dynamics don't manage to reach the competitive equilibrium because the learning algorithm is not well fitted for this problem or the problem is to big, one possible simplification could be to make the prices fix. The fixation of the prices would make that the competitive equilibrium may not exist, so, to ensure the existence, the problem could be set to $u_A(x_{A1},x_{A2})=u_B(x_{B1},x_{B2})$, and the initial budgets to be also equal, such that the competitive equilibrium would be $\{ (1/2,1/2),(1/2,1/2),(1,1)   \}$ by symmetry. 
 
+\section{Algorithm}
+\subsection*{Mathematical digression}
+Each player is going to use an actor-critic algorithm, which is based on Natural Policy Gradient using an approximation of the value function as a baseline in order to learn the best strategy. Calling $\Pi_i(a,s)$ the policy of player $i$, the probability that player $i$ makes action $a$ given that she is in the state $s$, then the expected reward for player $i$ is
+\begin{equation}
+\begin{aligned}
+    J_i &= \mathbf{E}[\sum_{t=0}^{\infty} \gamma^t R_{t+1}^{(i)}]\\&=\sum_{s,\hat{s},a_1,a_2,t}\gamma^tP(S_t = s)P(\hat{s}|s,a)\Pi_1(a_1|s)\Pi_2(a_2|s)u_i(s,a_1,a_2,\hat{s})
+\end{aligned}
+\end{equation}
+where $\gamma$ is a discount factor over time, $R_{t+1}^{(i)}$ is the value of the utility function of player $i$ at time $t+1$, and $P$ stands for probability. 
+
+The Natural Policy Gradient algorithm consist on maximising the function $J_i(\theta)$
+by computing the sequence 
+\begin{equation}
+\label{eq:gradientD}
+    \theta^{(n+1)} = \theta^{(n)} + \alpha \Tilde{\nabla}_{\theta^{(n)}}J_i(\theta^{(n)}) 
+\end{equation}
+with $\Tilde{\nabla}_\theta = F^{-1}\nabla_\theta$ the natural gradient, and $F$ the Fisher Information Matrix with elements 
+\begin{equation}F_{\theta_a,\theta_b} = \sum_{c,s}\Pi_i(c|s)\frac{\partial \log{\Pi_i(c|s)}}{\partial \theta_{a}} \frac{\partial \log{\Pi_i(c|s)}}{\partial \theta_{b}}. \end{equation} This sequence, for suitable choice of $\alpha$, any given $\theta^{(0)}$ and concavity assumptions, would converge to 
+\begin{equation}
+    \theta^* = \argmax_\theta(J_i(\theta))
+\end{equation}
+
+
+
+It can be proven that, if the policy is parameterized by parameters $\theta$,
+\begin{equation}
+    \Tilde{\nabla}_\theta J_i = \sum_{t=0}^\infty \gamma^t\mathbf{E}[\left( \sum_{k=0}^\infty \gamma^k R_{t+k+1} \right) \Tilde{\nabla}_\theta \log{\Pi_i(A_t|S_t)}],
+\end{equation}
+where $A_t \in \mathbf{A}$ the action taken on time $t$, and $S_t \in \mathbf{S}$ the state on time $t$, then, by choosing the soft-max parametrization,
+\begin{equation}
+    \Pi_i(a,s) = \frac{e^{\theta_{a,s}}}{\sum_{a^*} e^{\theta_{a^*,s}}},
+\end{equation}
+\begin{equation}
+\label{eq:naturalGradient}
+    \Tilde{\nabla}_\theta J_i = \sum_{t=0}^\infty \gamma^t\mathbf{E}[\left( \sum_{k=0}^\infty \gamma^k R_{t+k+1} \right) \mathbf{I}(A_t,S_t)/\Pi_i(A_t|S_t)]
+\end{equation}
+with $\mathbf{I}(x)$ a vector of zeros for every action and state that has not been taken and one for the action and state in time $t$.
+
+In order to decrease the variance and make the algorithm faster at learning, the Value Function is introduced as a baseline, 
+\begin{equation}
+    V_i(s) = \mathbf{E}[\sum_{t=0}^{\infty} \gamma^t R_{t+1}^{(i)}|S_0 = s]
+\end{equation}
+which obeys the Bellman's equation
+\begin{equation}
+    V(s) = \sum_{\hat{s},a} \Pi^{(t)}_i(a|\hat{s})P_t(\hat{s}|s,a)[u_i(s,a,\hat{s}) + \gamma V(\hat{s})].
+\end{equation}
+and the relation
+\begin{equation}\label{eq:qbellmanseq}\begin{aligned}
+    &Q_i(s,a) = \mathbf{E}[\sum_{t=0}^{\infty} \gamma^t R_{t+1}^{(i)}|S_0 = s,A_0 = a] \Rightarrow\\&V(s)= \sum_a \Pi^{(t)}_i(a|s)Q_i(s,a) \Rightarrow \\& Q(a,s) = \sum_{\hat{s}} P_t(\hat{s}|s,a)[u_i(s,a,\hat{s}) + \gamma V(\hat{s})].
+\end{aligned}
+\end{equation}
+Using the \cref{eq:qbellmanseq} in \cref{eq:naturalGradient} and adding the Value Function as baseline, the resulting natural gradient is
+\begin{equation}
+\label{eq:ReinforceBaseline}
+    \Tilde{\nabla}_\theta J_i =\mathbf{E}[ \sum_{t=0}^\infty \gamma^tu_i(S_{t+1},A_t,A_{t+1}) + \gamma V(S_{t+1}) - V(S_t))\mathbf{I}(A_t,S_t)/\Pi_i(A_t|S_t)].
+\end{equation}
+
+Dropping the Expected value in the previous equation, \cref{eq:ReinforceBaseline} and the \cref{eq:gradientD} give the ingredients for a stochastic policy gradient, which would converge for a suitable decreasing learning rate $\alpha=\alpha_t$. In order to reduce the variance and speed the algorithm, a bias is introduced by substituting the infinite sum with just one term of it. Because the Value function is also unknown, it also has to be learned. By choosing a parametric $\hat{V}(s,w)$, the intention is to minimize the distance between $V(s)$ and $\hat{V}(s,w)$, so defining the value error as 
+\begin{equation}
+    \bar{VE} = \sum_{s} \sum_{t=0}^\infty \gamma^tP(S_t=s)(V(s) - \hat{V}(s,w))^2,
+\end{equation}
+minimizing this value error by gradient decent, 
+\begin{equation}
+    \nabla (\bar{VE}) = -2\sum_{s} \sum_{t=0}^\infty \gamma^tP(S_t=s)(V(s) - \hat{V}(s,w))\nabla \hat{V}(s,w)
+\end{equation}
+which is approximated as 
+\begin{equation}
+\begin{aligned}
+    \nabla (\bar{VE})_{aprox} &=  -2\sum_{s} \sum_{t=0}^\infty \gamma^tP(S_t=s)(u_i(S_{t+1}) +\gamma \hat{V}(S_{t+1},w) - \hat{V}(S_t,w))\nabla \hat{V}(S_t,w)\\&=-2\sum_{t=0}^\infty \mathbf{E}[\gamma^t(u_i(S_{t+1}) +\gamma \hat{V}(S_{t+1},w) - \hat{V}(S_t,w))\nabla \hat{V}(S_t,w)]
+\end{aligned}
+\end{equation}
+
+Noticing that one state can be represented by three coordinates, $S = (S_1,S_2,S_3)$, then $\hat{V}(S,w)$ is chosen to be 
+\begin{equation}
+    \hat{V}(S,w) = w_1S_1 + w_2S_2 + w_3S_3,
+\end{equation}
+so, the final expression for the gradient of the value error that will be used is
+\begin{equation}
+    \nabla (\bar{VE})_{aprox}=-2\sum_{t=0}^\infty \mathbf{E}[\gamma^t(u_i(S_{t+1}) +\gamma \hat{V}(S_{t+1},w) - \hat{V}(S_t,w))S_t]
+\end{equation}
+Again, dropping the expected value give reach to a Stochastic gradient decent, and using only one term of the infinite sum increase the bias but can reduce the variance and speed up the algorithm. 
+
+\subsection*{Finally, the algorithm: Actor-Critic}
+\begin{itemize}
+    \item[-] Input $\Pi_1(a|s)$, $\Pi_2(a|s)$, $\hat{V}_1(s,w_1)$, $\hat{V}_2(s,w_2)$, $\alpha_\theta$ and $\alpha_w$.
+    \item[-] Initialize $\theta_1$, $\theta_2$, $w_1$ and $w_2$.
+    \item[-] Loop over episodes:
+    \begin{itemize}
+        \item[-] Initialize a state $s$.
+        \item[-] Loop over time:
+        \begin{itemize}
+            \item[-] Pick $A=(a_1,a_2)$ according to the policy $\Pi(A|s) = \Pi_1(a_1|s)\Pi_2(a_2|s)$.
+            \item[-] Observe $\hat{s},u_1(\hat{s}),u_2(\hat{s}) $.
+            \item[-] Compute the temporal difference error for each player $\delta_i = u_i(\hat{s}) + \gamma \hat{V}_i(\hat{s},w) - \hat{V}_i(s,w) $.
+            \item[-] Modify the parameters, $w_i=w_i+\alpha_w \delta_i s $, $\theta_i = \theta_i + \alpha_\theta \delta_i \mathbf{I}(a,s)/\Pi_i(a|s)$, $s = \hat{s}$.
+            
+        \end{itemize}
+    \end{itemize}
+    
+\end{itemize}
+
 \printbibliography
 \end{document}
+

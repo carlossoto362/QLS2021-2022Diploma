@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.20)  5 JUN 2022 21:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.20)  10 JUN 2022 08:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -546,22 +546,22 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 (./Proyect.aux)
 \openout1 = `Proyect.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -594,7 +594,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring OFF on input line 16.
+Package hyperref Info: Link coloring OFF on input line 17.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -607,9 +607,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count414
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
-LaTeX Info: Redefining \nameref on input line 16.
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
 
 (./Proyect.out) (./Proyect.out)
 \@outlinefile=\write4
@@ -648,71 +648,103 @@ Package biblatex Info: Automatic encoding selection.
 \openout3 = `Proyect.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'Proyect.bbl' not found.
+Package biblatex Info: ... file 'Proyect.bbl' found.
 
-No file Proyect.bbl.
-Package biblatex Info: Reference section=0 on input line 16.
-Package biblatex Info: Reference segment=0 on input line 16.
-
-LaTeX Warning: Citation 'mas-colell' on page 1 undefined on input line 21.
-
-<box1.png, id=14, 936.49875pt x 721.69624pt>
+(./Proyect.bbl)
+Package biblatex Info: Reference section=0 on input line 17.
+Package biblatex Info: Reference segment=0 on input line 17.
+<box1.png, id=19, 936.49875pt x 721.69624pt>
 File: box1.png Graphic file (type png)
 <use box1.png>
-Package pdftex.def Info: box1.png  used on input line 41.
+Package pdftex.def Info: box1.png  used on input line 42.
 (pdftex.def)             Requested size: 234.12411pt x 180.42361pt.
-[1
+ [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./box1.png>]
-[3]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./box1.png>] [3] [4]
+Overfull \hbox (26.10838pt too wide) detected at line 146
+[][]
+ []
 
-LaTeX Warning: Empty bibliography on input line 77.
+[5]
+Overfull \hbox (15.72948pt too wide) in paragraph at lines 148--149
+[]\OT1/cmr/m/n/10 Noticing that one state can be rep-re-sented by three co-or-d
+i-nates, $\OML/cmm/m/it/10 S \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 S[]; S[]; S[]\
+OT1/cmr/m/n/10 )$,
+ []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 78.
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 78.
+
+Overfull \hbox (16.60077pt too wide) in paragraph at lines 167--168
+[]\OT1/cmr/m/n/10 Pick $\OML/cmm/m/it/10 A \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 
+a[]; a[]\OT1/cmr/m/n/10 )$ ac-cord-ing to the pol-icy $^^E(\OML/cmm/m/it/10 A\O
+MS/cmsy/m/n/10 j\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 ) = ^^E[](\OML/cmm/m/it/10 a[
+]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 )^^E[](\OML/cmm/m/it/10 a[
+]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 )$. 
+ []
+
+
+Overfull \hbox (2.13205pt too wide) in paragraph at lines 169--170
+[]\OT1/cmr/m/n/10 Compute the tem-po-ral dif-fer-ence er-ror for each player $\
+OML/cmm/m/it/10 ^^N[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 ([]
+) +
+ []
+
+
+Overfull \hbox (17.99939pt too wide) in paragraph at lines 170--171
+[]\OT1/cmr/m/n/10 Modify the pa-ram-e-ters, $\OML/cmm/m/it/10 w[] \OT1/cmr/m/n/
+10 = \OML/cmm/m/it/10 w[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 []^^N[]s$\OT1/cmr
+/m/n/10 , $\OML/cmm/m/it/10 ^^R[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 ^^R[] \OT1
+/cmr/m/n/10 + \OML/cmm/m/it/10 []^^N[]\OT1/cmr/bx/n/10 I\OT1/cmr/m/n/10 (\OML/
+cmm/m/it/10 a; s\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 =\OT1/cmr/m/n/10 ^^E[](\OML/c
+mm/m/it/10 a\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 )$,
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 178.
+[6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 178.
  (./Proyect.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 78.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 78.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 178.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 178.
 Package rerunfilecheck Info: File `Proyect.out' has not changed.
-(rerunfilecheck)             Checksum: 80032940844D89E533758E9564B32527;222.
+(rerunfilecheck)             Checksum: E7AD8F239591912ED5DED421BB7EC031;266.
 
 
 LaTeX Warning: There were undefined references.
 
 
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                Proyect
-(biblatex)                and rerun LaTeX afterwards.
+Package biblatex Warning: Please rerun LaTeX.
+(biblatex)                Page breaks have changed.
 
 Package logreq Info: Writing requests to 'Proyect.run.xml'.
 \openout1 = `Proyect.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 78.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 178.
  ) 
 Here is how much of TeX's memory you used:
- 15652 strings out of 483140
- 283211 string characters out of 5965150
- 1002224 words of memory out of 5000000
- 30485 multiletter control sequences out of 15000+600000
+ 15707 strings out of 483140
+ 284163 string characters out of 5965150
+ 1003600 words of memory out of 5000000
+ 30515 multiletter control sequences out of 15000+600000
  538686 words of font info for 46 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 47i,6n,49p,945b,4720s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,9n,49p,945b,4720s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
-i10.pfb>
-Output written on Proyect.pdf (4 pages, 186648 bytes).
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Proyect.pdf (6 pages, 240786 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
- 15 named destinations out of 1000 (max. 500000)
- 22 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 155 PDF objects out of 1000 (max. 8388607)
+ 128 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 30 words of extra memory for PDF output out of 10000 (max. 10000000)
 
