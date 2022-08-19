@@ -1,0 +1,29 @@
+This file contains all the documents requared to reproduce the work of my thesis, except by the data used. All are writen in python 3.
+Not all of the codes are used in the thesis, most of them where tests in order to see if some correlation were found. 
+
+The data used for the thesis proyect is in https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118996. 
+before runing, make sure to have in the same folder, folders with names 'corr_mat', 'hue', 'chroma', 'luminosity' and 'corr_mat_vrs_pll'.
+
+corr_mat.py creates 4 correlation matrices as well as storing the values in text files. The documents are stored in the folder corr_mat. 
+each of this correlation matrices are four different ways of defining a distance in the color space. 
+
+functions.py has most of the functions used in 'corr_hystogram.py', 'corr_eigenvalues.py' and 'clustering.py'.
+
+corr_hystogram.py makes a hystogram that compares the values of the correlation matrix and the values of the correlation matrix after shuffling the colors. 
+
+corr_eigenvalues computes the eigenvalues of the histogram, and compares his values with thous after shuffling the colors, and with matrices with random entries. 
+
+clustering does the procedure of corr_hystogram and corr_eigenvalues, but for each of the clusters made in the first part of the code. 
+
+intensity_hue.py make a bunch of analysis for values in cilindrical coordinates instead of cartesian. The same analisis as the corr_hystogram, and corr_eigenvalues, but also a linear regression, clustering and a comparison with the magnet toy used in https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118996.
+
+big_Numbers.py puts spetial atention to values that looks big, and test if they are actually big. 
+
+RBM.py is my attempt to make a restricted boltzman machine. 
+RBM_cov.py and RBM_final are atempts to train the RBM and aproximate the joint probability distribution as well as comparing the values with the covariance matrices. 
+
+RBM_sklearn.py is the final tuning and values used, using an inplementation in sklearn. 
+
+RBM_sklearn_cov.py has the comparison betweeen the cov matrix and the aproximation of the joint probability distribution. 
+
+
